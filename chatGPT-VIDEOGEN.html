@@ -3,142 +3,245 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Video Prompt Builder</title>
+  <title>Simple Generic AI Video Prompt Builder</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f9f9f9;
-      padding: 20px;
-      max-width: 600px;
-      margin: auto;
-    }
-    h2 { color: #222; }
-    label {
-      display: block;
-      margin-top: 10px;
-      font-weight: bold;
-    }
-    select, input {
-      width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    #output {
-      background: #fff;
-      padding: 15px;
-      margin-top: 20px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      white-space: pre-wrap;
-    }
-    button {
-      margin-top: 10px;
-      padding: 10px 15px;
-      background: #007bff;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #0056b3;
-    }
+   body {
+  font-family: Arial, sans-serif;
+  background: #f9f9f9;
+  padding: 20px;
+  max-width: 600px;
+  margin: auto;
+}
+h2 { color: #222; }
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+select, input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+#output {
+  background: #fff;
+  padding: 15px;
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  white-space: pre-wrap;
+}
+button {
+  margin-top: 10px;
+  padding: 10px 15px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+button:hover {
+  background: #0056b3;
+}
+
   </style>
 </head>
 <body>
   <h2>🎬 AI Video Prompt Builder</h2>
 
-  <label for="camera">🎥 Camera Type or Motion:</label>
-  <select id="camera">
-    <option value="">-- Select --</option>
-    <option>Wide-angle tracking shot</option>
-    <option>Close-up zoom</option>
-    <option>Orbiting camera movement</option>
-    <option>Slow pan from left to right</option>
-  </select>
-  <input id="cameraCustom" placeholder="Or write your own..." />
+<label for="camera">🎥 Camera Type or Motion:</label>
+<select id="camera">
+  <option value="">-- Select --</option>
+  <option>Wide-angle tracking shot</option>
+  <option>Close-up zoom</option>
+  <option>Orbiting camera movement</option>
+  <option>Slow pan from left to right</option>
+</select>
+<input id="cameraCustom" placeholder="Or write your own..." />
 
-  <label for="subject">🧍 Subject Description:</label>
-  <select id="subject">
-    <option value="">-- Select --</option>
-    <option>A samurai woman in red armor</option>
-    <option>A futuristic robot with glowing eyes</option>
-    <option>A child with butterfly wings</option>
-    <option>An astronaut in a silver spacesuit</option>
-  </select>
-  <input id="subjectCustom" placeholder="Or write your own..." />
+<label for="subject">🧍 Subject Description:</label>
+<select id="subject">
+  <option value="">-- Select --</option>
+  <option>A samurai woman in red armor</option>
+  <option>A futuristic robot with glowing eyes</option>
+  <option>A child with butterfly wings</option>
+  <option>An astronaut in a silver spacesuit</option>
+</select>
+<input id="subjectCustom" placeholder="Or write your own..." />
 
-  <label for="action">🕺 Action:</label>
-  <select id="action">
-    <option value="">-- Select --</option>
-    <option>Drawing a sword</option>
-    <option>Walking through a storm</option>
-    <option>Dancing in the rain</option>
-    <option>Floating in zero gravity</option>
-  </select>
-  <input id="actionCustom" placeholder="Or write your own..." />
+<label for="action">🕺 Action:</label>
+<select id="action">
+  <option value="">-- Select --</option>
+  <option>Drawing a sword</option>
+  <option>Walking through a storm</option>
+  <option>Dancing in the rain</option>
+  <option>Floating in zero gravity</option>
+</select>
+<input id="actionCustom" placeholder="Or write your own..." />
 
-  <label for="scene">🌍 Scene/Location:</label>
-  <select id="scene">
-    <option value="">-- Select --</option>
-    <option>On a misty mountain cliff</option>
-    <option>Inside a neon-lit city alley</option>
-    <option>In a futuristic spaceship bridge</option>
-    <option>Within a glowing forest</option>
-  </select>
-  <input id="sceneCustom" placeholder="Or write your own..." />
+<label for="scene">🌍 Scene/Location:</label>
+<select id="scene">
+  <option value="">-- Select --</option>
+  <option>On a misty mountain cliff</option>
+  <option>Inside a neon-lit city alley</option>
+  <option>In a futuristic spaceship bridge</option>
+  <option>Within a glowing forest</option>
+</select>
+<input id="sceneCustom" placeholder="Or write your own..." />
 
-  <label for="lighting">💡 Lighting or Mood:</label>
-  <select id="lighting">
-    <option value="">-- Select --</option>
-    <option>Cinematic lighting</option>
-    <option>Golden hour sunlight</option>
-    <option>Dark and moody</option>
-    <option>Soft glowing ambiance</option>
-  </select>
-  <input id="lightingCustom" placeholder="Or write your own..." />
+<label for="lighting">💡 Lighting or Mood:</label>
+<select id="lighting">
+  <option value="">-- Select --</option>
+  <option>Cinematic lighting</option>
+  <option>Golden hour sunlight</option>
+  <option>Dark and moody</option>
+  <option>Soft glowing ambiance</option>
+</select>
+<input id="lightingCustom" placeholder="Or write your own..." />
 
-  <label for="style">🎨 Style or Genre:</label>
-  <select id="style">
-    <option value="">-- Select --</option>
-    <option>Fantasy realism style</option>
-    <option>Cyberpunk aesthetic</option>
-    <option>Studio Ghibli anime style</option>
-    <option>Pixar-style 3D animation</option>
-  </select>
-  <input id="styleCustom" placeholder="Or write your own..." />
+<label for="style">🎨 Style or Genre:</label>
+<select id="style">
+  <option value="">-- Select --</option>
+  <option>Fantasy realism style</option>
+  <option>Cyberpunk aesthetic</option>
+  <option>Studio Ghibli anime style</option>
+  <option>Pixar-style 3D animation</option>
+</select>
+<input id="styleCustom" placeholder="Or write your own..." />
 
-  <button onclick="generatePrompt()">✨ Generate Prompt</button>
-  <div id="output"></div>
-  <button onclick="copyPrompt()">📋 Copy Prompt</button>
+<button onclick="generatePrompt()">✨ Generate Prompt</button>
+<div id="restoreMsg" style="margin-top: 1rem; color: #28a745;"></div>
 
-  <script>
-    function getValue(selectId, inputId) {
-      const selectValue = document.getElementById(selectId).value;
-      const inputValue = document.getElementById(inputId).value;
-      return inputValue.trim() || selectValue;
+<div id="output"></div>
+<button onclick="copyPrompt()">📋 Copy Prompt</button>
+<button onclick="clearSavedPrompt()">🗑️ Clear Saved Prompt</button>
+
+<hr />
+<h3>📸 Prompt Preview Gallery</h3>
+<div id="gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1rem;">
+  <!-- Gallery items will go here -->
+</div>
+
+<script>
+  const samplePrompts = [
+    {
+      prompt: "Orbiting camera movement, A futuristic robot with glowing eyes, Floating in zero gravity, In a futuristic spaceship bridge, Cinematic lighting, Cyberpunk aesthetic.",
+      image: "https://via.placeholder.com/320x180?text=Cyberpunk+Robot"
+    },
+    {
+      prompt: "Wide-angle tracking shot, A samurai woman in red armor, Drawing a sword, On a misty mountain cliff, Golden hour sunlight, Fantasy realism style.",
+      image: "https://via.placeholder.com/320x180?text=Samurai+Mountain"
+    },
+    {
+      prompt: "Slow pan from left to right, A child with butterfly wings, Dancing in the rain, Within a glowing forest, Soft glowing ambiance, Studio Ghibli anime style.",
+      image: "https://via.placeholder.com/320x180?text=Butterfly+Child"
+    }
+  ];
+
+  const galleryDiv = document.getElementById('gallery');
+
+  samplePrompts.forEach(item => {
+    const card = document.createElement('div');
+    card.style.border = "1px solid #ccc";
+    card.style.borderRadius = "8px";
+    card.style.padding = "0.5rem";
+    card.style.background = "#fff";
+
+    const img = document.createElement('img');
+    img.src = item.image;
+    img.alt = "Prompt preview";
+    img.style.width = "100%";
+    img.style.borderRadius = "4px";
+
+    const text = document.createElement('p');
+    text.textContent = item.prompt;
+    text.style.fontSize = "0.85rem";
+
+    const button = document.createElement('button');
+    button.textContent = "Use this prompt";
+    button.style.marginTop = "0.5rem";
+    button.onclick = () => {
+      document.getElementById('output').textContent = item.prompt;
+      localStorage.setItem('savedPrompt', item.prompt);
+      document.getElementById('restoreMsg').textContent = '✅ Prompt loaded from gallery.';
+    };
+
+    card.appendChild(img);
+    card.appendChild(text);
+    card.appendChild(button);
+
+    galleryDiv.appendChild(card);
+  });
+</script>
+
+
+<script>
+  function getValue(selectId, inputId) {
+    const selectValue = document.getElementById(selectId).value;
+    const inputValue = document.getElementById(inputId).value;
+    return inputValue.trim() || selectValue;
+  }
+
+  function generatePrompt() {
+    const camera = getValue('camera', 'cameraCustom');
+    const subject = getValue('subject', 'subjectCustom');
+    const action = getValue('action', 'actionCustom');
+    const scene = getValue('scene', 'sceneCustom');
+    const lighting = getValue('lighting', 'lightingCustom');
+    const style = getValue('style', 'styleCustom');
+
+    const prompt = `${camera}, ${subject}, ${action}, ${scene}, ${lighting}, ${style}.`;
+    document.getElementById('output').textContent = prompt;
+
+    // Save to localStorage
+    localStorage.setItem('savedPrompt', prompt);
+
+    // Save individual fields
+    const fields = ['camera', 'cameraCustom', 'subject', 'subjectCustom', 'action', 'actionCustom', 'scene', 'sceneCustom', 'lighting', 'lightingCustom', 'style', 'styleCustom'];
+    fields.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) localStorage.setItem('field_' + id, el.value);
+    });
+  }
+
+  function copyPrompt() {
+    const prompt = document.getElementById('output').textContent;
+    navigator.clipboard.writeText(prompt).then(() => {
+      alert('Prompt copied to clipboard!');
+    });
+  }
+
+  function clearSavedPrompt() {
+    localStorage.removeItem('savedPrompt');
+    const fields = ['camera', 'cameraCustom', 'subject', 'subjectCustom', 'action', 'actionCustom', 'scene', 'sceneCustom', 'lighting', 'lightingCustom', 'style', 'styleCustom'];
+    fields.forEach(id => localStorage.removeItem('field_' + id));
+    document.getElementById('output').textContent = '';
+    document.getElementById('restoreMsg').textContent = '✅ Prompt cleared.';
+  }
+
+  // Restore on page load
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedPrompt = localStorage.getItem('savedPrompt');
+    const fields = ['camera', 'cameraCustom', 'subject', 'subjectCustom', 'action', 'actionCustom', 'scene', 'sceneCustom', 'lighting', 'lightingCustom', 'style', 'styleCustom'];
+
+    if (savedPrompt) {
+      document.getElementById('output').textContent = savedPrompt;
+      document.getElementById('restoreMsg').textContent = '✅ Prompt restored from last session.';
     }
 
-    function generatePrompt() {
-      const camera = getValue('camera', 'cameraCustom');
-      const subject = getValue('subject', 'subjectCustom');
-      const action = getValue('action', 'actionCustom');
-      const scene = getValue('scene', 'sceneCustom');
-      const lighting = getValue('lighting', 'lightingCustom');
-      const style = getValue('style', 'styleCustom');
+    // Restore field values
+    fields.forEach(id => {
+      const el = document.getElementById(id);
+      const savedVal = localStorage.getItem('field_' + id);
+      if (el && savedVal !== null) {
+        el.value = savedVal;
+      }
+    });
+  });
+</script>
 
-      const prompt = `${camera}, ${subject}, ${action}, ${scene}, ${lighting}, ${style}.`;
-      document.getElementById('output').textContent = prompt;
-    }
 
-    function copyPrompt() {
-      const prompt = document.getElementById('output').textContent;
-      navigator.clipboard.writeText(prompt).then(() => {
-        alert('Prompt copied to clipboard!');
-      });
-    }
-  </script>
 </body>
 </html>
