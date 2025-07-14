@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Video Prompt Builder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+    h2 { color: #222; }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    select, input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    #output {
+      background: #fff;
+      padding: 15px;
+      margin-top: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      white-space: pre-wrap;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 15px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h2>🎬 AI Video Prompt Builder</h2>
+
+  <label for="camera">🎥 Camera Type or Motion:</label>
+  <select id="camera">
+    <option value="">-- Select --</option>
+    <option>Wide-angle tracking shot</option>
+    <option>Close-up zoom</option>
+    <option>Orbiting camera movement</option>
+    <option>Slow pan from left to right</option>
+  </select>
+  <input id="cameraCustom" placeholder="Or write your own..." />
+
+  <label for="subject">🧍 Subject Description:</label>
+  <select id="subject">
+    <option value="">-- Select --</option>
+    <option>A samurai woman in red armor</option>
+    <option>A futuristic robot with glowing eyes</option>
+    <option>A child with butterfly wings</option>
+    <option>An astronaut in a silver spacesuit</option>
+  </select>
+  <input id="subjectCustom" placeholder="Or write your own..." />
+
+  <label for="action">🕺 Action:</label>
+  <select id="action">
+    <option value="">-- Select --</option>
+    <option>Drawing a sword</option>
+    <option>Walking through a storm</option>
+    <option>Dancing in the rain</option>
+    <option>Floating in zero gravity</option>
+  </select>
+  <input id="actionCustom" placeholder="Or write your own..." />
+
+  <label for="scene">🌍 Scene/Location:</label>
+  <select id="scene">
+    <option value="">-- Select --</option>
+    <option>On a misty mountain cliff</option>
+    <option>Inside a neon-lit city alley</option>
+    <option>In a futuristic spaceship bridge</option>
+    <option>Within a glowing forest</option>
+  </select>
+  <input id="sceneCustom" placeholder="Or write your own..." />
+
+  <label for="lighting">💡 Lighting or Mood:</label>
+  <select id="lighting">
+    <option value="">-- Select --</option>
+    <option>Cinematic lighting</option>
+    <option>Golden hour sunlight</option>
+    <option>Dark and moody</option>
+    <option>Soft glowing ambiance</option>
+  </select>
+  <input id="lightingCustom" placeholder="Or write your own..." />
+
+  <label for="style">🎨 Style or Genre:</label>
+  <select id="style">
+    <option value="">-- Select --</option>
+    <option>Fantasy realism style</option>
+    <option>Cyberpunk aesthetic</option>
+    <option>Studio Ghibli anime style</option>
+    <option>Pixar-style 3D animation</option>
+  </select>
+  <input id="styleCustom" placeholder="Or write your own..." />
+
+  <button onclick="generatePrompt()">✨ Generate Prompt</button>
+  <div id="output"></div>
+  <button onclick="copyPrompt()">📋 Copy Prompt</button>
+
+  <script>
+    function getValue(selectId, inputId) {
+      const selectValue = document.getElementById(selectId).value;
+      const inputValue = document.getElementById(inputId).value;
+      return inputValue.trim() || selectValue;
+    }
+
+    function generatePrompt() {
+      const camera = getValue('camera', 'cameraCustom');
+      const subject = getValue('subject', 'subjectCustom');
+      const action = getValue('action', 'actionCustom');
+      const scene = getValue('scene', 'sceneCustom');
+      const lighting = getValue('lighting', 'lightingCustom');
+      const style = getValue('style', 'styleCustom');
+
+      const prompt = `${camera}, ${subject}, ${action}, ${scene}, ${lighting}, ${style}.`;
+      document.getElementById('output').textContent = prompt;
+    }
+
+    function copyPrompt() {
+      const prompt = document.getElementById('output').textContent;
+      navigator.clipboard.writeText(prompt).then(() => {
+        alert('Prompt copied to clipboard!');
+      });
+    }
+  </script>
+</body>
+</html>
