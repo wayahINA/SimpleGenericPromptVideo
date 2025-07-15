@@ -1,9 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+
+<!-- Google Analytics (deferred config) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V9QSYP0504"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  window.addEventListener('DOMContentLoaded', function() {
+    gtag('js', new Date());
+    gtag('config', 'G-V9QSYP0504');
+  });
+</script>
+
+
+<meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Build AI video prompts easily in English or Bahasa Indonesia for tools like Hailuo, Pika, and Runway.">
+  <meta name="theme-color" content="#007bff" />
+<meta name="description" content="Generate cinematic prompts for AI video tools like Hailuo, Pika, and Runway. Free, bilingual, easy to use.">
+<meta name="keywords" content="AI video prompt, video generator, cinematic AI, Hailuo, Pika, Runway, prompt builder">
+<meta name="author" content="GitHub:wayahINA aka omtomini">
+
+  <!-- Manifest for PWA -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.png" type="image/png">
+
+
+<!-- OpenGraph for rich sharing -->
+<meta property="og:title" content="VidGenPrompter – AI Video Prompt Builder">
+<meta property="og:description" content="Craft cinematic AI video prompts and use them directly in Hailuo, Pika, or Runway.">
+<meta property="og:image" content="https://vidgenprompter.netlify.app/preview.jpg"> <!-- Replace with real image -->
+<meta property="og:url" content="https://vidgenprompter.netlify.app/">
+<meta property="og:type" content="website">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="VidGenPrompter – AI Video Prompt Builder">
+<meta name="twitter:description" content="Craft cinematic AI video prompts and use them in top tools instantly.">
+<meta name="twitter:image" content="https://vidgenprompter.netlify.app/preview.jpg"> <!-- Replace with real image -->
+
 
   <title>Simple Generic AI Video Prompt Builder</title>
   <style>
@@ -120,7 +158,7 @@ button:hover {
 
 <h2>🎬 AI Video Prompt Builder</h2>
 <div style="margin-bottom: 1rem;">
-  <button id="langToggle" onclick="toggleLanguage()">🇮🇩 Bahasa</button>
+  <button id="langToggle" onclick="toggleLanguage()" title="Change language" aria-label="Change language" >🇮🇩 Bahasa</button>
 </div>
 <label for="camera">🎥 Camera Type or Motion:</label>
 <select id="camera">
@@ -182,25 +220,27 @@ button:hover {
 </select>
 <input id="styleCustom" placeholder="Or write your own..." />
 
-<button onclick="generatePrompt()">✨ Generate Prompt</button>
+<button onclick="generatePrompt()" title="Generate video prompt" aria-label="Generate prompt">✨ Generate Prompt</button>
 <div id="restoreMsg" style="margin-top: 1rem; color: #28a745;"></div>
 
 <div id="output"></div>
-<button onclick="copyPrompt()">📋 Copy Prompt</button>
+<button onclick="copyPrompt()" title="Copy prompt to clipboard" aria-label="Copy prompt to clipboard" >📋 Copy Prompt</button>
+<button onclick="downloadPromptAsTxt()" title="Download prompt as .txt file" aria-label="Download prompt as text file">📄 Download as TXT</button>
+
 <div style="margin-top: 10px;">
-  <button onclick="useInHailuo()">▶ Use in Hailuo</button>
-  <button onclick="useInPika()">🎬 Use in Pika</button>
-  <button onclick="useInRunway()">🌈 Use in Runway</button>
+  <button onclick="useInHailuo()" title="Open Hailuo and paste prompt" aria-label="Use prompt in Hailuo">▶ Use in Hailuo</button>
+  <button onclick="useInPika()"  title="Open Pika Labs and paste prompt" aria-label="Use prompt in Pika">🎬 Use in Pika</button>
+  <button onclick="useInRunway()"  title="Open Runway and paste prompt" aria-label="Use prompt in Runway">🌈 Use in Runway</button>
 </div>
 
-<button onclick="clearSavedPrompt()">🗑️ Clear Saved Prompt</button>
+<button onclick="clearSavedPrompt()" title="Clear current prompt and saved data" aria-label="Clear prompt">🗑️ Clear Saved Prompt</button>
 
 <hr />
 
   <!-- Gallery items will go here -->
   <h3 style="margin-top: 2rem;">📸 Prompt Preview Gallery</h3>
   <div style="text-align: right; margin-bottom: 0.5rem;">
-  <button onclick="toggleGalleryLang()" id="galleryLangBtn">🇮🇩 Bahasa</button>
+  <button onclick="toggleGalleryLang()" id="galleryLangBtn" title="Switch gallery language" aria-label="Switch gallery language">🇮🇩 Bahasa</button>
 </div>
 
 <div id="gallery" class="gallery-container"></div>
@@ -396,7 +436,8 @@ function renderGallery() {
     const img = document.createElement('img');
     img.src = item.image;
     img.alt = item[galleryLang];
-
+    img.loading = "lazy"; // ✅ improve performance by lazy-loading
+	
     const content = document.createElement('div');
     content.className = 'gallery-content';
 
@@ -406,8 +447,9 @@ function renderGallery() {
 
     const button = document.createElement('button');
     button.textContent = galleryLang === 'id' ? "Gunakan prompt ini" : "Use this prompt";
-
-    button.onclick = () => {
+    button.title = galleryLang === 'id' ? "Gunakan prompt ini dari galeri" : "Use this prompt from gallery";
+    button.setAttribute("aria-label", galleryLang === 'id' ? "Gunakan prompt ini dari galeri" : "Use this prompt from gallery");
+	button.onclick = () => {
       document.getElementById('output').textContent = item[galleryLang];
       localStorage.setItem('savedPrompt', item[galleryLang]);
       document.getElementById('restoreMsg').textContent = '✅ Prompt loaded from gallery.';
@@ -451,6 +493,20 @@ function renderGallery() {
  
   });
 
+function downloadPromptAsTxt() {
+  const prompt = document.getElementById('output').textContent;
+  if (!prompt.trim()) return alert("No prompt to download!");
+
+  const blob = new Blob([prompt], { type: "text/plain" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "ai_video_prompt.txt";
+  a.click();
+
+  URL.revokeObjectURL(url);
+}
 
 
 renderGallery();
